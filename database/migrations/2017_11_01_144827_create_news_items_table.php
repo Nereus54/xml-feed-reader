@@ -20,7 +20,7 @@ class CreateNewsItemsTable extends Migration
 			$table->string('author');
 			$table->dateTime('published_at');
 			$table->string('link');
-			$table->string('filename');
+			$table->string('filename')->nullable();
 			$table->timestamps();
 		});
 	}

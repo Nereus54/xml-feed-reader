@@ -20,7 +20,7 @@ class ItemDto
 
 	public function setTitle($value)
 	{
-		$this->title = (string) trim($value);
+		$this->title = trim((string) $value);
 
 		return $this;
 	}
@@ -32,7 +32,7 @@ class ItemDto
 
 	public function setDescription($value)
 	{
-		$this->description = (string) trim($value);
+		$this->description = trim((string) $value);
 
 		return $this;
 	}
@@ -44,7 +44,7 @@ class ItemDto
 
 	public function setAuthor($value)
 	{
-		$this->author = (string) trim($value);
+		$this->author = trim((string) $value);
 
 		return $this;
 	}
@@ -56,7 +56,7 @@ class ItemDto
 
 	public function setPublishedAt($value)
 	{
-		$this->publishedAt = new Carbon((string) trim($value));
+		$this->publishedAt = new Carbon(trim((string) $value));
 
 		return $this;
 	}
@@ -68,7 +68,7 @@ class ItemDto
 
 	public function setLink($value)
 	{
-		$this->link = (string) trim($value);
+		$this->link = trim((string) $value);
 
 		return $this;
 	}
@@ -78,9 +78,11 @@ class ItemDto
 		return $this->link;
 	}
 
-	public function setFilename($value)
+	public function setFilename($value = null)
 	{
-		$this->filename = (string) trim($value);
+		if ($value) {
+			$this->filename = trim((string) $value);
+		}
 
 		return $this;
 	}

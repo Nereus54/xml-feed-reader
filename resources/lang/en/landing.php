@@ -15,6 +15,7 @@ return [
 	],
 
 	'news' => [
+		'noEntries' => 'There are not any news yet.',
 		'author' => 'Author',
 		'publishedAt' => 'Published at',
 	],

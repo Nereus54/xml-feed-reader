@@ -92,6 +92,14 @@ class XmlParserService
 
 		foreach ($this->xml->channel->item as $item) {
 
+			$itemFilename = null;
+
+			$imageUrl = trim((string) $item->children('media', 'thumbnail')->attributes()->url);
+
+			if ($this->isUrlExists($imageUrl) && getimagesize($imageUrl)) {
+				$itemFilename = $imageUrl;
+			}
+
 			$itemDto = app(ItemDto::class);
 
 			$itemDto
@@ -100,7 +108,7 @@ class XmlParserService
 				->setAuthor($item->children('dc', 'creator'))
 				->setPublishedAt($item->pubDate)
 				->setLink($item->link)
-				->setFilename($item->children('media', 'thumbnail')->attributes()->url);
+				->setFilename($itemFilename);
 
 			$items[] = $itemDto;
 		}

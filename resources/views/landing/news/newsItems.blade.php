@@ -7,7 +7,7 @@
     @endphp
 
     <div class="row">
-    @foreach ($newsItems as $newsItem)
+    @forelse ($newsItems as $newsItem)
         <div class="col-sm-12 col-md-8 col-md-offset-2 news-items wow {{ (($i%2) == 0) ? 'bounceInRight' : 'bounceInLeft' }}"
              data-wow-duration="2s">
             <article>
@@ -25,13 +25,19 @@
                 </div>
 
                 <div class="article-description text-justify">
+                    <img src="{{ $newsItem->filename ?? '/assets/imgs/default_article_image.png' }}" alt="{{ $newsItem->title }}">
+
                     {!! $newsItem->description !!}
                 </div>
             </article>
             <hr class="article-divider">
         </div>
         @php $i++ @endphp
-    @endforeach
+    @empty
+        <div class="alert alert-warning text-center">
+            {{ trans('landing.news.noEntries') }}
+        </div>
+    @endforelse
     </div>
 
 @endsection
